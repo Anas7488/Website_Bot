@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - NeoTech Institute</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Basic styling for the dashboard */
+        .dashboard-header {
+            background-color: var(--blueberry);
+            color: var(--white);
+            padding: 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        .dashboard-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .dashboard-content {
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .welcome-message {
+            font-size: 1.5rem;
+            color: var(--blueberry);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .dashboard-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        .dashboard-nav a {
+            display: block;
+            background-color: var(--apricot);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            text-align: center;
+            min-width: 150px;
+        }
+        .dashboard-nav a:hover {
+            background-color: var(--apricot-light);
+        }
+        .info-section {
+            background-color: var(--light-gray);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .info-section h3 {
+            color: var(--blueberry);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--apricot);
+            padding-bottom: 5px;
+        }
+        .info-section p {
+            margin-bottom: 10px;
+            color: #555;
+        }
+        .logout-btn {
+            display: block;
+            width: fit-content;
+            margin: 30px auto 0;
+            background-color: var(--apple);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .logout-btn:hover {
+            background-color: #c0392b;
+        }
+        .flash-message {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .flash-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border-color: #c3e6cb;
+        }
+        .flash-message.danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+        }
+        .flash-message.info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border-color: #bee5eb;
+        }
+        .flash-message.warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border-color: #ffeeba;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-header">
+        <h1>Student Dashboard</h1>
+        <p>Welcome, {{ student_name }}!</p>
+    </div>
+
+    <div class="dashboard-content">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for category, message in messages %}
+                        <div class="flash-message {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <div class="dashboard-nav">
+            <a href="#">My Profile</a>
+            <a href="#">Check Fees</a>
+            <a href="#">Library Books</a>
+            <a href="#">My Courses</a>
+            <a href="#">Announcements</a>
+        </div>
+
+        <div class="info-section">
+            <h3>Quick Overview</h3>
+            <p><strong>Student ID:</strong> {{ session.get('student_id') }}</p>
+            <p><strong>Email:</strong> {{ session.get('student_email') }}</p>
+            <p>You currently have no pending actions.</p>
+            </div>
+
+        <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+    </div>
+</body>
+</html>

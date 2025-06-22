@@ -1,0 +1,6 @@
+
+Flask==2.3.3 # Or your specific Flask version
+openai==0.28.1 # Or your specific OpenAI library version
+python-dotenv==1.0.0 # Or your specific python-dotenv version
+mysql-connector-python==8.0.33 # Or your specific mysql-connector-python version
+Werkzeug==2.3.7 # Often installed with Flask, but good to include if used directly

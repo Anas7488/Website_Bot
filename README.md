@@ -10,7 +10,7 @@
 ---
 
 ## 📌 Overview
-
+![Dashboard Screenshot](Home page Neotech Website.png)
 The **NeoTech Institute Chatbot** is a web-based AI-powered virtual assistant designed to enhance communication and information delivery for **prospective students, enrolled students, and general visitors** of NeoTech Institute.
 
 The system uses a **hybrid chatbot architecture**, combining predefined static responses with **dynamic AI-generated answers** powered by a Large Language Model (LLM) from **Hugging Face**.  
